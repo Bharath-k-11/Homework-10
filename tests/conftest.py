@@ -183,7 +183,7 @@ async def manager_user(db_session: AsyncSession):
     await db_session.commit()
     return user
 
-# ✅ Fixed Fixtures for Test Inputs
+# Fixed Fixtures for Test Inputs
 
 @pytest.fixture
 def user_base_data():
@@ -224,7 +224,7 @@ def user_update_data():
 @pytest.fixture
 def user_response_data():
     return {
-        "id": str(uuid4()),  # ✅ valid UUID
+        "id": str(uuid4()),  # valid UUID
         "nickname": "testuser",
         "first_name": "Test",
         "last_name": "User",
@@ -238,22 +238,24 @@ def user_response_data():
 @pytest.fixture
 def login_request_data():
     return {
-        "email": "john.doe@example.com",  # ✅ Correct field for LoginRequest
+        "email": "john.doe@example.com",  # Correct field for LoginRequest
         "password": "SecurePassword123!"
     }
 
+# Token Fixtures
 @pytest.fixture
 async def user_token(verified_user):
-    token_data = {"sub": str(verified_user.id), "role": verified_user.role.value}
-    return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
+    token_data = {"sub": str(verified_user.id), "role": "AUTHENTICATED"}
+    return create_access_token(data=token_data)
 
+# Token for Admin Fixture
 @pytest.fixture
 async def admin_token(admin_user):
-    token_data = {"sub": str(admin_user.id), "role": admin_user.role.value}
-    return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
+    token_data = {"sub": str(admin_user.id), "role": "ADMIN"}
+    return create_access_token(data=token_data)
 
+# Token for manager_user Fixture..
 @pytest.fixture
 async def manager_token(manager_user):
-    token_data = {"sub": str(manager_user.id), "role": manager_user.role.value}
-    return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
-    
+    token_data = {"sub": str(manager_user.id), "role": "MANAGER"}
+    return create_access_token(data=token_data)

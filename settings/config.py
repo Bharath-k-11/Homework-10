@@ -46,6 +46,7 @@ class Settings(BaseSettings):
     smtp_username: str = Field(default='your-mailtrap-username', description="Username for SMTP server")
     smtp_password: str = Field(default='your-mailtrap-password', description="Password for SMTP server")
     send_real_mail: bool = Field(default=False, description="Use mock for email sending")
+    smtp_timeout: int = Field(default=60, description="SMTP connection timeout in seconds")
 
     # Environment setting to switch between development, testing, and production
     environment: str = Field(default='development', description="Environment setting (e.g., development, test, production)")
@@ -54,6 +55,7 @@ class Settings(BaseSettings):
         # If your .env file is not in the root directory, adjust the path accordingly.
         env_file = ".env"
         env_file_encoding = 'utf-8'
+
 
 # Instantiate settings to be imported in your application
 settings = Settings()

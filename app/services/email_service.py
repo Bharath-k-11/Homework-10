@@ -1,4 +1,3 @@
-# email_service.py
 from builtins import ValueError, dict, str
 from settings.config import settings
 from app.utils.smtp_connection import SMTPClient
@@ -6,7 +5,7 @@ from app.utils.template_manager import TemplateManager
 from app.models.user_model import User
 
 class EmailService:
-    def __init__(self, template_manager: TemplateManager):
+    def __init__(self, template_manager: TemplateManager):  # ✅ fixed constructor
         self.smtp_client = SMTPClient(
             server=settings.smtp_server,
             port=settings.smtp_port,
@@ -26,7 +25,8 @@ class EmailService:
             raise ValueError("Invalid email type")
 
         html_content = self.template_manager.render_template(email_type, **user_data)
-        self.smtp_client.send_email(subject_map[email_type], html_content, user_data['email'])
+
+        await self.smtp_client.send_email(subject_map[email_type], html_content, user_data['email'])
 
     async def send_verification_email(self, user: User):
         verification_url = f"{settings.server_base_url}verify-email/{user.id}/{user.verification_token}"

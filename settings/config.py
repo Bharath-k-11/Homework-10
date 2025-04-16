@@ -57,3 +57,5 @@ class Settings(BaseSettings):
 
 # Instantiate settings to be imported in your application
 settings = Settings()
+
+

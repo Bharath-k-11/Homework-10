@@ -15,7 +15,6 @@ Key Highlights:
 - Use of FastAPI's Dependency Injection system to manage database sessions and user authentication.
 - Demonstrates how to perform CRUD operations in an asynchronous manner using SQLAlchemy with FastAPI.
 - Implements HATEOAS by generating dynamic links for user-related actions, enhancing API discoverability.
-- Utilizes OAuth2PasswordBearer for securing API endpoints, requiring valid access tokens for operations.
 """
 
 from builtins import dict, int, len, str

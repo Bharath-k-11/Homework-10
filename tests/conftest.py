@@ -224,7 +224,11 @@ def user_update_data():
 @pytest.fixture
 def user_response_data():
     return {
+<<<<<<< HEAD
         "id": str(uuid4()),  # valid UUID
+=======
+        "id": str(uuid4()),  #  valid UUID
+>>>>>>> a4fcfa1a2a6e7ca3bf35f20ad29afeb9a18687be
         "nickname": "testuser",
         "first_name": "Test",
         "last_name": "User",
@@ -257,5 +261,12 @@ async def admin_token(admin_user):
 # Token for manager_user Fixture..
 @pytest.fixture
 async def manager_token(manager_user):
+<<<<<<< HEAD
     token_data = {"sub": str(manager_user.id), "role": "MANAGER"}
     return create_access_token(data=token_data)
+=======
+    token_data = {"sub": str(manager_user.id), "role": manager_user.role.value}
+    return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
+
+    
+>>>>>>> a4fcfa1a2a6e7ca3bf35f20ad29afeb9a18687be

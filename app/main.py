@@ -63,3 +63,4 @@ async def http_exception_handler(request, exc: HTTPException):
 
 # Include user routes
 app.include_router(user_routes.router)
+

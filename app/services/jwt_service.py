@@ -1,21 +1,28 @@
-from datetime import datetime, timedelta
+# app/services/jwt_service.py
+from builtins import dict, str
 import jwt
-from settings.config import settings  # Assuming the settings are here
+from datetime import datetime, timedelta
+from settings.config import settings
 
-# Corrected function: No need for `.upper()` on Enum values
 def create_access_token(*, data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
-    
-    # Ensure role is passed as string from Enum directly (no .upper())
+    # Convert role to uppercase before encoding the JWT
     if 'role' in to_encode:
-        to_encode['role'] = to_encode['role']  # already a string, no need for .upper()
-        
+        to_encode['role'] = to_encode['role'].upper()
     expire = datetime.utcnow() + (expires_delta if expires_delta else timedelta(minutes=settings.access_token_expire_minutes))
     to_encode.update({"exp": expire})
-    
-    # Encoding the JWT
     encoded_jwt = jwt.encode(to_encode, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
     return encoded_jwt
+
+def create_access_token(*, data: dict, expires_delta: timedelta = None):
+     to_encode = data.copy()
+     # Convert role to string and then to uppercase before encoding the JWT
+     if 'role' in to_encode:
+         to_encode['role'] = str(to_encode['role']).upper()  # Convert role to string first
+     expire = datetime.utcnow() + (expires_delta if expires_delta else timedelta(minutes=settings.access_token_expire_minutes))
+     to_encode.update({"exp": expire})
+     encoded_jwt = jwt.encode(to_encode, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
+     return encoded_jwt
 
 def decode_token(token: str):
     try:

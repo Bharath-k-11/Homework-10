@@ -183,7 +183,7 @@ async def manager_user(db_session: AsyncSession):
     await db_session.commit()
     return user
 
-# ✅ Fixed Fixtures for Test Inputs
+# Fixed Fixtures for Test Inputs
 
 @pytest.fixture
 def user_base_data():
@@ -224,7 +224,7 @@ def user_update_data():
 @pytest.fixture
 def user_response_data():
     return {
-        "id": str(uuid4()),  # ✅ valid UUID
+        "id": str(uuid4()),  #  valid UUID
         "nickname": "testuser",
         "first_name": "Test",
         "last_name": "User",
@@ -238,7 +238,7 @@ def user_response_data():
 @pytest.fixture
 def login_request_data():
     return {
-        "email": "john.doe@example.com",  # ✅ Correct field for LoginRequest
+        "email": "john.doe@example.com",  # Correct field for LoginRequest
         "password": "SecurePassword123!"
     }
 
@@ -256,4 +256,5 @@ async def admin_token(admin_user):
 async def manager_token(manager_user):
     token_data = {"sub": str(manager_user.id), "role": manager_user.role.value}
     return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
+
     

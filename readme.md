@@ -1,6 +1,6 @@
 # Hello Professor!
 
-# Assignment 10 – 
+# Homework 10 – 
 
 Event Manager Company: User Management REST API
 

@@ -19,8 +19,9 @@ git clone https://github.com/Bharath-k-11/Homework-10.git
 Step 3: Start the application using Docker:
 
 docker compose up --build
-2
+
 Step 4: Access the interactive API documentation via Swagger UI at:
+
 <img width="1012" alt="Screenshot 2025-04-19 at 8 19 16 PM" src="https://github.com/user-attachments/assets/c4a70753-33d0-4ac7-86b4-5206c4e9b0bc" />
 
 <img width="1012" alt="Screenshot 2025-04-19 at 8 19 34 PM" src="https://github.com/user-attachments/assets/6e71db74-fcd8-4503-924d-c236d24b31b4" />
